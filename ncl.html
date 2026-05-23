@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+<meta name="theme-color" content="#003F87">
+<title>노르웨지안 크루즈 생활백서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #003F87;
+    --brand-dark: #002558;
+    --accent: #4A9CC4;
+    --ivory: #FAF7F2;
+    --cream: #F5F0E6;
+    --text: #1A1A1A;
+    --text-soft: #4A4A4A;
+    --text-light: #6E6E6E;
+    --line: #E5E0D5;
+    --card: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--ivory); color: var(--text);
+    line-height: 1.65; word-break: keep-all;
+    overflow-wrap: break-word; font-weight: 400;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  .hero { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); color: #fff; padding: 60px 20px 50px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); opacity: 0.2; }
+  .hero-emoji { font-size: 56px; margin-bottom: 16px; position: relative; }
+  .hero h1 { font-size: 30px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 10px; position: relative; }
+  .hero .sub { font-size: 15px; opacity: 0.92; font-weight: 400; position: relative; }
+  .hero .accent-bar { width: 50px; height: 3px; background: var(--accent); margin: 20px auto 16px; border-radius: 2px; position: relative; }
+  section { padding: 50px 0 10px; scroll-margin-top: 20px; }
+  .section-tag { display: inline-block; background: var(--brand); color: #fff; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; margin-bottom: 14px; letter-spacing: 0.5px; }
+  .section-title { font-size: 24px; font-weight: 900; color: var(--text); margin-bottom: 8px; letter-spacing: -0.5px; }
+  .section-desc { font-size: 14px; color: var(--text-light); margin-bottom: 24px; }
+  .card { background: var(--card); border-radius: 16px; padding: 22px 20px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); border: 1px solid var(--line); }
+  .card-title { font-size: 17px; font-weight: 800; margin-bottom: 14px; color: var(--brand); display: flex; align-items: center; gap: 8px; }
+  .card-title .ico { font-size: 22px; }
+  .info-list { list-style: none; }
+  .info-list li { display: flex; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; gap: 10px; }
+  .info-list li:last-child { border-bottom: none; }
+  .info-list .label { font-weight: 700; color: var(--brand); min-width: 75px; flex-shrink: 0; }
+  .info-list .value { color: var(--text-soft); flex: 1; }
+  .step { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
+  .step-num { background: var(--brand); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+  .step-body { flex: 1; padding-top: 3px; }
+  .step-body strong { display: block; font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+  .step-body p { font-size: 14px; color: var(--text-soft); line-height: 1.55; }
+  .tip { background: linear-gradient(135deg, #E8F1F9 0%, #F4F8FC 100%); border-left: 4px solid var(--accent); padding: 14px 16px; border-radius: 10px; margin: 14px 0; font-size: 14px; color: var(--text-soft); }
+  .tip strong { color: var(--text); font-weight: 800; }
+  .warn { background: linear-gradient(135deg, #FFF0F0 0%, #FFF8F8 100%); border-left: 4px solid #E63946; padding: 14px 16px; border-radius: 10px; margin: 14px 0; font-size: 14px; color: var(--text-soft); }
+  .warn strong { color: #C92E3C; font-weight: 800; }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .badge { background: var(--cream); color: var(--brand-dark); padding: 6px 12px; border-radius: 14px; font-size: 12.5px; font-weight: 600; border: 1px solid var(--line); }
+  .meal-table { width: 100%; margin-top: 10px; border-collapse: collapse; }
+  .meal-table th, .meal-table td { padding: 11px 8px; text-align: left; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+  .meal-table th { color: var(--brand); font-weight: 700; background: var(--cream); }
+  .meal-table td:first-child { font-weight: 700; }
+  .help-box { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); color: #fff; border-radius: 16px; padding: 26px 22px; text-align: center; margin: 14px 0; }
+  .help-box h3 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+  .help-box .phrase { background: rgba(255,255,255,0.15); padding: 12px 16px; border-radius: 10px; margin: 10px 0; font-size: 15px; font-weight: 700; }
+  .help-box p { font-size: 14px; opacity: 0.92; line-height: 1.6; }
+  .footer-cta { background: var(--brand-dark); color: #fff; text-align: center; padding: 40px 20px; margin-top: 40px; }
+  .footer-cta h3 { font-size: 20px; font-weight: 900; margin-bottom: 8px; }
+  .footer-cta p { font-size: 14px; opacity: 0.85; }
+  .footer-cta .accent-bar { width: 40px; height: 3px; background: var(--accent); margin: 12px auto; border-radius: 2px; }
+  .highlight-card { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); color: #fff; border-radius: 16px; padding: 24px 20px; margin: 14px 0; }
+  .highlight-card h4 { font-size: 17px; font-weight: 800; margin-bottom: 12px; }
+  .highlight-card ul { list-style: none; }
+  .highlight-card li { padding: 8px 0; font-size: 14.5px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .highlight-card li:last-child { border-bottom: none; }
+  @media (max-width: 520px) {
+    .container { padding: 0 16px; }
+    .hero { padding: 50px 18px 40px; }
+    .hero h1 { font-size: 26px; }
+    .hero-emoji { font-size: 48px; }
+    .section-title { font-size: 22px; }
+    .card { padding: 20px 18px; }
+    .card-title { font-size: 16px; }
+    .info-list li { font-size: 14px; flex-direction: column; gap: 4px; }
+    .info-list .label { min-width: auto; }
+  }
+  @media (max-width: 360px) { .hero h1 { font-size: 23px; } .section-title { font-size: 20px; } }
+  a, button { min-height: 50px; display: inline-flex; align-items: center; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-emoji">🛳️</div>
+  <h1>노르웨지안 크루즈 생활백서</h1>
+  <div class="accent-bar"></div>
+  <div class="sub">Freestyle Cruising · NCL</div>
+</header>
+
+<div class="container">
+
+  <!-- 1. 선사 한눈에 -->
+  <section>
+    <span class="section-tag">01 · 선사 한눈에</span>
+    <h2 class="section-title">NCL은 어떤 선사?</h2>
+    <p class="section-desc">자유로운 미국식 크루즈의 원조</p>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🇺🇸</span>Norwegian Cruise Line</div>
+      <ul class="info-list">
+        <li><span class="label">본사</span><span class="value">미국 마이애미 (1966년 창립)</span></li>
+        <li><span class="label">스타일</span><span class="value">자유분방 · 모던 · 격식 없음</span></li>
+        <li><span class="label">시그니처</span><span class="value"><strong>Freestyle Cruising</strong> — 정해진 시간/좌석 없음</span></li>
+        <li><span class="label">추천</span><span class="value">자유 좋아하는 사람 · 가족 · 활동적인 여행자</span></li>
+        <li><span class="label">한국 친화도</span><span class="value">⭐⭐ (영어 위주 · 한국인 적음)</span></li>
+        <li><span class="label">강점</span><span class="value">알래스카 · 하와이 · 유럽 · 카리브 다양한 항로</span></li>
+        <li><span class="label">대표 선박</span><span class="value">Norwegian Prima, Viva, Encore, Bliss, Joy</span></li>
+      </ul>
+    </div>
+
+    <div class="highlight-card">
+      <h4>⛵ Freestyle Cruising이란?</h4>
+      <ul>
+        <li>✅ 정해진 정찬 시간 <strong>없음</strong></li>
+        <li>✅ 좌석 지정 <strong>없음</strong> · 원할 때 입장</li>
+        <li>✅ 드레스코드 <strong>없음</strong> (디너에서도)</li>
+        <li>✅ 메인 다이닝 3개 + 스페셜티 10여 개 자유 선택</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. 승선 전 -->
+  <section>
+    <span class="section-tag">02 · 승선 전 (D-30 ~ D-1)</span>
+    <h2 class="section-title">출항 전에 끝낼 것</h2>
+    <p class="section-desc">Free at Sea 옵션을 잘 활용</p>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🎁</span>Free at Sea — 핵심 프로모션</div>
+      <p style="font-size:14px;color:var(--text-soft);margin-bottom:10px;">예약 시 아래 5개 중 <strong>선실 등급에 따라 1~5개 선택</strong>해서 무료. 예약 단계에서 결정.</p>
+      <ul class="info-list">
+        <li><span class="label">①</span><span class="value">프리미엄 음료 패키지 (술 포함)</span></li>
+        <li><span class="label">②</span><span class="value">스페셜티 식당 패키지 (2~4회)</span></li>
+        <li><span class="label">③</span><span class="value">와이파이 패키지</span></li>
+        <li><span class="label">④</span><span class="value">기항지 익스커션 크레딧 ($50/항구)</span></li>
+        <li><span class="label">⑤</span><span class="value">3·4번째 게스트 무료 (가족 항해 시)</span></li>
+      </ul>
+      <div class="tip"><strong>💡 추천 조합</strong> 음료 + 와이파이 + 스페셜티 식당 = 가장 만족도 높음. 가족이라면 ⑤ 무조건 챙기기.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">💻</span>웹체크인 방법</div>
+      <ul class="info-list">
+        <li><span class="label">시작 시기</span><span class="value">출항 21일 ~ 1일 전</span></li>
+        <li><span class="label">사이트</span><span class="value">ncl.com 또는 Cruise Norwegian 앱</span></li>
+        <li><span class="label">필수</span><span class="value">예약번호 · 여권 · 사진 · 도착 시간 슬롯</span></li>
+        <li><span class="label">결과물</span><span class="value">eDocs · 짐 태그 인쇄</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">📱</span>공식 앱 — Cruise Norwegian</div>
+      <ul class="info-list">
+        <li><span class="label">앱 이름</span><span class="value">Cruise Norwegian</span></li>
+        <li><span class="label">주요 기능</span><span class="value">일정 · 식당 예약 · 청구서 · 채팅($)</span></li>
+        <li><span class="label">선내</span><span class="value">와이파이 없이도 앱 사용 가능</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🍽️</span>스페셜티 식당 예약</div>
+      <p style="font-size:14px;color:var(--text-soft);">사전 예약 가능 (예약 오픈 후 빠르게). Le Bistro(프렌치), Cagney's(스테이크), Q Texas Smokehouse, Onda(이탈리안) 등 인기.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">👔</span>드레스코드</div>
+      <p style="font-size:14px;color:var(--text-soft);"><strong>드레스코드 없음.</strong> Freestyle 그대로. "Norwegian's Night Out" 한 번 차려입으면 분위기 좋아요.</p>
+      <div class="badge-row">
+        <span class="badge">자유 복장</span>
+        <span class="badge">스마트 캐주얼 권장</span>
+        <span class="badge">Night Out 1회 권장</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🧳</span>패킹 핵심</div>
+      <ul class="info-list">
+        <li><span class="label">필수</span><span class="value">여권 · eDocs · 신용카드 · 멀티어댑터(미국 A타입)</span></li>
+        <li><span class="label">의류</span><span class="value">운동화 · 수영복 · 가벼운 디너룩</span></li>
+        <li><span class="label">상비약</span><span class="value">멀미약 · 평소 복용약</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. 승선 당일 -->
+  <section>
+    <span class="section-tag">03 · 승선 당일</span>
+    <h2 class="section-title">터미널 → 객실까지</h2>
+    <p class="section-desc">미국 대형 항구는 슬롯제</p>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>지정 시간 도착</strong>
+          <p>슬롯에 맞춰 도착. 마이애미·시애틀·뉴욕 같은 대형 항구는 일찍 가면 대기 줄.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>짐 위탁</strong>
+          <p>터미널 입구 포터 (미국은 짐당 $2~5 팁 관행). 짐 태그 부착.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>체크인 · 보안</strong>
+          <p>여권 + eDocs 제시 → <strong>NCL 키카드</strong> 수령 → 보안검색.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>승선 · 안전훈련</strong>
+          <p>객실에서 안전 영상 시청 + Muster 스테이션 한 번 방문. 빠르게 끝남.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <strong>첫날 꼭 할 것</strong>
+          <p>① <strong>스페셜티 식당 예약</strong>(앱) ② 쇼/액티비티 예약 ③ Free at Sea 옵션 확인</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn"><strong>⚠️ NCL 키카드</strong> 방 열쇠 + 결제 + 출입. 분실 시 즉시 리셉션 신고.</div>
+  </section>
+
+  <!-- 4. 선상 생활 -->
+  <section>
+    <span class="section-tag">04 · 선상 생활 (씨데이)</span>
+    <h2 class="section-title">배 위에서의 하루</h2>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🍽️</span>식사 시스템 — Freestyle</div>
+      <table class="meal-table">
+        <tr><th>구분</th><th>장소</th><th>특징</th></tr>
+        <tr><td>메인 다이닝</td><td>3개 무료</td><td>예약 없이 입장 (대기 가능)</td></tr>
+        <tr><td>뷔페</td><td>Garden Cafe</td><td>거의 종일 운영</td></tr>
+        <tr><td>스페셜티</td><td>10여 개</td><td>유료 ($) 또는 패키지</td></tr>
+        <tr><td>룸서비스</td><td>24시간</td><td>일부 메뉴 무료 · 일부 유료</td></tr>
+      </table>
+      <div class="tip"><strong>💡 메인 다이닝</strong> 정찬은 일찍(17:30~18:30) 또는 늦게(20:30 이후) 가면 대기 적어요.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🍷</span>음료 패키지</div>
+      <ul class="info-list">
+        <li><span class="label">Premium</span><span class="value">맥주 · 와인 · 칵테일 · 소다 · 커피 (~$15까지)</span></li>
+        <li><span class="label">Premium Plus</span><span class="value">고급 와인 · 위스키 · 스파클링 (~$20까지)</span></li>
+        <li><span class="label">팁</span><span class="value">Free at Sea로 무료 선택 시 20% 서비스료만 부담</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">💳</span>결제 · 팁</div>
+      <ul class="info-list">
+        <li><span class="label">결제</span><span class="value">NCL 키카드 = 모든 선내 결제</span></li>
+        <li><span class="label">Daily 팁</span><span class="value">약 <strong>$20/인/일</strong> 자동 청구 (스위트는 $25)</span></li>
+        <li><span class="label">바·스파</span><span class="value">20% 자동 추가</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">📶</span>와이파이</div>
+      <p style="font-size:14px;color:var(--text-soft);">선내 와이파이 유료. <strong>Unlimited / Premium</strong> 패키지. Free at Sea로 무료 선택 가능.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🎭</span>엔터테인먼트</div>
+      <p style="font-size:14px;color:var(--text-soft);"><strong>브로드웨이 뮤지컬급 공연 강력</strong> — 자신의 시그니처. Six, Jersey Boys, Footloose, Beetlejuice 등 선박별 다름. 사전 예약 필수.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🎢</span>액티비티</div>
+      <p style="font-size:14px;color:var(--text-soft);">신형선(Prima/Viva)은 <strong>고카트 트랙 · 자유낙하 슬라이드 · 미니 골프</strong>. Encore/Bliss는 카트 트랙 · 레이저 태그.</p>
+    </div>
+
+    <div class="help-box">
+      <h3>🗣️ 도움 필요할 때</h3>
+      <p>영어 위주 운영. Guest Services 24시간.</p>
+      <div class="phrase">"Excuse me, I need assistance."</div>
+      <p>앱 채팅(유료)으로도 가능</p>
+    </div>
+  </section>
+
+  <!-- 5. 기항지 -->
+  <section>
+    <span class="section-tag">05 · 기항지</span>
+    <h2 class="section-title">내릴 때 · 탈 때</h2>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🃏</span>꼭 챙길 것</div>
+      <ul class="info-list">
+        <li><span class="label">키카드</span><span class="value">하선·승선 시 매번 스캔. 필수!</span></li>
+        <li><span class="label">여권</span><span class="value">국가별 정책 다름. 카리브해 사본 OK</span></li>
+        <li><span class="label">현지 화폐</span><span class="value">달러로 대부분 OK + 신용카드</span></li>
+      </ul>
+    </div>
+
+    <div class="warn"><strong>⏰ 복귀 시간</strong> 출항 <strong>30분~1시간 전</strong>까지 무조건 승선. 앱·객실 TV 안내.</div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🏝️</span>Great Stirrup Cay</div>
+      <p style="font-size:14px;color:var(--text-soft);"><strong>NCL 전용 프라이빗 아일랜드</strong> (바하마). 카리브 항로의 하이라이트. 무료 비치 + 유료 카바나/스피드보트.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ico">🚌</span>익스커션 vs 자유여행</div>
+      <ul class="info-list">
+        <li><span class="label">NCL 익스커션</span><span class="value">앱 또는 선내 부킹. 늦어도 배 기다려줌</span></li>
+        <li><span class="label">자유여행</span><span class="value">알래스카 · 유럽 항구는 자유여행도 좋음</span></li>
+        <li><span class="label">팁</span><span class="value">Free at Sea $50 크레딧 사용 가능</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. 하선 -->
+  <section>
+    <span class="section-tag">06 · 하선</span>
+    <h2 class="section-title">마지막 날</h2>
+
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>전날 밤 짐 정리</strong>
+          <p>큰 짐 객실 문 앞에 (정해진 시간 전). <strong>여권·귀중품·다음날 입을 옷은 휴대</strong>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>하선 시간 확인</strong>
+          <p>앱과 객실에 컬러/번호로 안내. <strong>Easy Walk-Off</strong>(직접 짐 들고 1시간 일찍 하선) 옵션 있음.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>아침 식사</strong>
+          <p>Garden Cafe 일찍 운영. 비행기 일정 있으면 7시 전 추천.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>하선 · 짐 찾기</strong>
+          <p>키카드 마지막 스캔 → 터미널 컬러 구역에서 짐 → 미국 항구는 CBP 입국심사.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip"><strong>💳 최종 청구서</strong> 앱에서 실시간. 미국 항구는 입국심사 빠른 편(글로벌엔트리/모바일패스포트 활용).</div>
+  </section>
+
+</div>
+
+<footer class="footer-cta">
+  <h3>Cruise Like a Norwegian</h3>
+  <div class="accent-bar"></div>
+  <p>Bella · Cruise Nomad 🛳️</p>
+</footer>
+
+</body>
+</html>
